@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="generator" content="TextMate http://macromates.com/">
+  <meta name="author" content="Adam Christian">
+  <!-- Date: 2010-09-25 -->
+  <title>Jelly.io: Jellyfish Home</title>
+  <style type="text/css" media="screen">
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        z-index: 10;
+    }
+  </style>
+  <script src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+  <link href="/css/dot-luv/jquery-ui-1.8.7.custom.css" rel="stylesheet" type="text/css" />
+	
+  <style>
+    @font-face {
+      font-family: 'Crimson Text';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Crimson Text'), local('CrimsonText-Roman'), url('http://themes.googleusercontent.com/font?kit=3IFMwfRa07i-auYR-B-zNYnF5uFdDttMLvmWuJdhhgs') format('truetype');
+    }
+    @font-face {
+      font-family: 'Philosopher';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Philosopher'), url('http://themes.googleusercontent.com/font?kit=OttjxgcoEsufOGSINYBGLZ0EAVxt0G0biEntp43Qt6E') format('truetype');
+    }
+    @font-face {
+      font-family: 'Inconsolata';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Inconsolata'), url('http://themes.googleusercontent.com/font?kit=BjAYBlHtW3CJxDcjzrnZCJ0EAVxt0G0biEntp43Qt6E') format('truetype');
+    }
+    @font-face {
+      font-family: 'Droid Sans';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Droid Sans'), local('DroidSans'), url('http://themes.googleusercontent.com/font?kit=s-BiyweUPV0v-yRb-cjciC3USBnSvpkopQaUR-2r7iU') format('truetype');
+    }
+    
+    html {
+      background: #1c1c1c url(/img/bg.png);
+      font-family:Crimson Text;
+    }
+    body {
+      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+      -moz-text-stroke: 1px rgba(0, 0, 0, 0.1);
+    }
+    h3 {
+      left:60%;
+      position:relative;
+    }
+    
+    .code {
+      font-size:18px;
+      font-family:Inconsolata;
+      margin-top:0px;
+      margin-left:7px;
+      margin-right:3px;
+      margin-bottom:25px;
+      padding: 5px 5px 5px 5px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+      background-color:#ECE5D5;
+      color:black;
+      box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.6);
+      -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.6);
+      -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.6);
+    } 
+    pre.code {
+      font-size:14px;
+    }
+    
+    a {
+      color: #78C5B4;
+      text-decoration: none;
+    }
+    
+    .banner {
+      color:lightgray;font-size:22px;width:380px;margin-left:100px;
+    }
+    
+    .env {
+     color:white;margin:30px;right:0px;position:absolute;z-Index:1000; 
+    }
+  </style>
+</head>
+<body>
+  <img src="/img/title.png" style="margin:10px;">
+      
+    <div class="banner">Jellyfish is a <a href="http://nodejs.org/#build">Node</a> project that aims to make it easy to launch different Javascript environments and run your code.</div>
+      
+      <div class="env">
+         <h2>Platforms</h2>
+         <ul>
+           <li><b>MacOSX</b></li>
+           <li>Soon: Linux</li>
+           <li>Soon: Windows</li>
+         </ul>
+         <h2>Environments</h2>
+         <ul>
+           <li><b>Firefox 4</b></li>
+           <li><b>Google Chrome</b></li>
+           <li><b>Node</b></li>
+           <li>Soon: Tobi</li>
+           <li>Soon: Internet Explorer</li>
+
+         </ul>
+       </div>
+    <div style="color:white;margin:30px;width:450px;">
+      <h1>Setup</h1>
+      
+      <h2>Install - Soon</h2>
+<pre class="code">npm install jellyfish</pre>
+
+      <h2>Basic Usage - Soon</h2>
+      <h3>Start Server</h3>
+<pre class="code">jellyfish start</pre>
+      <h3>Start Client REPL</h3>
+<pre class="code"> jellyfish client</pre>
+
+      <h2>Write a Script - Soon</h2>
+<pre class="code">
+var jellyfish = require('jellyfish');
+
+var ff = new jellyfish("firefox");
+
+ff.go("http://www.google.com")
+  .js("document.title", function(o) {
+    assert.equal(o.result,"Google")
+  })
+  .user("type", { name:'q'}, text:'moo')
+  .user("click", { name:'btnG' })
+  .ff.jsfile("./test.js", function(o){
+    console.log(o.result)
+  })
+  .jsurl("http://jelly.io/test.js", function(o) { 
+    console.log(o.result)
+  }).stop();
+</pre>
+      <h1>Client API</h1>
+
+      <h2>Instantiate - /firefox/chrome/node/</h2>
+
+<pre class="code">
+var ff = new jellyfish("firefox");
+</pre>
+
+<b>or</b>
+
+<pre class="code">
+var ff = new jellyfish();
+ff.start("firefox");
+</pre>
+      
+      <h2>Run Code</h2>
+
+      <h3>Raw Javascript</h3>
+<pre class="code">
+ff.js("$jfQ(document.body).html()", function(o) {
+  console.log(o.result)
+});
+</pre>
+
+      <h3>Local Javascript</h3> 
+<pre class="code">
+ff.jsfile("./test.js", function(o){
+  console.log(o.result)
+});
+</pre class="code">
+
+      <h3>Remote Javascript</h3>
+<pre class="code">
+ff.jsurl("http://jelly.io/test.js", function(o) { 
+  console.log(o.result)
+});
+</pre>
+
+      <h2>Asserts</h2>
+
+<pre class="code">
+ff.js("document.title", function(o) {
+  assert.equal(o.result,"Jellyfish")
+});
+</pre>
+
+    <h2>User Simulation</h2>
+
+<pre class="code">
+ff.user("type", { name:'q'}, text:'moo');
+ff.user("click", { name:'btnG' });
+</pre>
+
+<b>Command: alt + t (in browser) gives you a JS runner UI</b>
+
+      <h2>Helpers</h2>
+      <h3>Go - To a URL</h3>
+
+<pre class="code">ff.go("http://jelly.io")</pre>
+
+      <h3>Frames - List</h3>
+
+<pre class="code">ff.frames()</pre>
+
+      <h3>jQuery - Always</h3>
+
+<pre class="code">You can always use the injected jQuery, called $jfQ</pre>
+    </div>
+ 
+    
+    <img src="/img/jelly.png" style="position:absolute;top:0px;right:0px;">;
+    
+   <a href="http://github.com/admc/jellyfish"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://assets2.github.com/img/4c7dc970b89fd04b81c8e221ba88ff99a06c6b61?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_right_white_ffffff.png&path=" alt="Fork me on GitHub"></a>
+</body>
+</html>
+
