@@ -20,13 +20,8 @@ Copyright 2010, Sauce Labs
 // Module deps
 var express = require('express');
 var sys = require('sys');
-var soda = require('soda')
-  , assert = require('assert');
-var request = require('request')
-  , jsdom = require('jsdom');  
-var http = require('http')
-  , io = require('socket.io')
-  , fs = require('fs');
+var request = require('request');
+var http = require('http');
 
 var app = module.exports = express.createServer();
 
