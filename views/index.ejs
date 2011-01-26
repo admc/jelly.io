@@ -148,23 +148,30 @@
 
       <h2>Write a Script - Soon</h2>
 <pre class="code">
-var assert = require('assert');
-var jellyfish = require('jellyfish');
+var assert = require('assert')
+  , jellyfish = require('jellyfish');
 
-var ff = new jellyfish("firefox");
+var ff = new jellyfish.init("firefox");
 
-ff.go("http://www.google.com")
+ff.on('command', function(cmd, args){
+  console.log(' \x1b[33m%s\x1b[0m: %s', cmd, args);
+});
+
+ff.go("http://www.jelly.io")
   .js("document.title", function(o) {
-    assert.equal(o.result,"Google")
+    assert.equal(o.result,"Jelly.io: Jellyfish Home")
   })
   .user("type", { name:'q', text:'moo'})
   .user("click", { name:'btnG' })
-  .ff.jsfile("./test.js", function(o) {
+  .jsfile("./test.js", function(o) {
     console.log(o.result)
   })
   .jsurl("http://jelly.io/test.js", function(o) { 
-    console.log(o.result)
-  }).stop();
+    console.log(o.result);
+  })
+  .stop(function(o) {
+    process.exit();
+  });
 </pre>
       <h1>Client API</h1>
 
@@ -192,7 +199,7 @@ ff.js("$jfQ(document.body).html()", function(o) {
 
       <h3>Local Javascript</h3> 
 <pre class="code">
-ff.jsfile("./test.js", function(o){
+ff.jsfile("./test.js", function(o) {
   console.log(o.result)
 });
 </pre class="code">
@@ -222,6 +229,11 @@ ff.user("click", { name:'btnG' });
 <b>Command: alt + t (in browser) gives you a JS runner UI</b>
 
       <h2>Helpers</h2>
+      
+      <h3>To - The target</h3>
+
+<pre class="code">ff.to("Jelly.io: Jellyfish Home")</pre>
+      
       <h3>Go - To a URL</h3>
 
 <pre class="code">ff.go("http://jelly.io")</pre>
