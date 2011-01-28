@@ -122,14 +122,12 @@
          <ul>
            <li><b>MacOSX 10.6</b></li>
            <li><b>Ubuntu 10</b></li>
-           <li>Soon: Windows 7</li>
          </ul>
          <h2>Environments</h2>
          <ul>
            <li><b>Firefox 3.x, 4.0b</b></li>
            <li><b>Google Chrome</b></li>
-           <li>Soon: Tobi</li>
-           <li>Soon: Internet Explorer</li>
+           <li><b>JSDOM</b></li>
 
          </ul>
        </div>
@@ -148,9 +146,9 @@
       <h2>Write a Script - Soon</h2>
 <pre class="code">
 var assert = require('assert')
-  , jellyfish = require('jellyfish');
+  , jellyfish = require('jellyfish').jellyfish;
 
-var ff = new jellyfish.init("firefox");
+var ff = new jellyfish("firefox");
 
 ff.on('command', function(cmd, args){
   console.log(' \x1b[33m%s\x1b[0m: %s', cmd, args);
@@ -177,13 +175,13 @@ ff.go("http://www.jelly.io")
       <h2>Instantiate - /firefox/chrome/node/</h2>
 
 <pre class="code">
-var ff = new jellyfish.init("firefox");
+var ff = new jellyfish("firefox");
 </pre>
 
 <b>or</b>
 
 <pre class="code">
-var ff = new jellyfish.init();
+var ff = new jellyfish();
 ff.start("firefox");
 </pre>
       
