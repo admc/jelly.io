@@ -213,12 +213,15 @@ browser.jsurl("http://jelly.io/test.js", function(o) {
     <h2>User Simulation</h2>
 
 <pre class="code">
+// type a string into a css located input
 browser.user("type", { 
     query:'input[name="q"]', 
     text:'test string'
   }, function(o) {
       assert.equal(o.result, true);
 });
+
+// click a css located button
 browser.user("click", { 
     query:'input[name="btnG"]' 
   }, function(o) {
