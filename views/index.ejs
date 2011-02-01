@@ -170,7 +170,7 @@ browser.go("http://www.jelly.io")
   browser.stop(function() {
     process.exit();
   })
-})
+});
 </pre>
       <h1>Client API</h1>
 
@@ -184,7 +184,7 @@ var jellyfish = require('jellyfish'),
 <b>or</b>
 
 <pre class="code">
-  var browser = jellyfish.createFirefox();
+var browser = jellyfish.createFirefox();
 </pre>
       
       <h2>Run Code</h2>
@@ -193,14 +193,14 @@ var jellyfish = require('jellyfish'),
 <pre class="code">
 browser.js("document.title", function(o) {
   assert.equal(o.result, "Jelly.io: Jellyfish Home")
-})
+});
 </pre>
 
       <h3>Local Javascript</h3> 
 <pre class="code">
 browser.jsfile("./test.js", function(o) {
   assert.equal(o.result, "alerted: Jellyfish local file loaded succesfully!")
-})
+});
 </pre class="code">
 
       <h3>Remote Javascript</h3>
