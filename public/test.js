@@ -1,1 +1,1 @@
-alert("awesome test from jelly.io, run!");
+alert("Successfully ran some remote javascript in Jellyfish!");

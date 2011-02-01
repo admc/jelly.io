@@ -127,117 +127,111 @@
          <ul>
            <li><b>Firefox 3.x, 4.0b</b></li>
            <li><b>Google Chrome</b></li>
-           <li><b>JSDOM</b></li>
+           <li><b>Zombie</b></li>
 
          </ul>
        </div>
     <div style="color:#E0E0E0;margin:30px;width:450px;">
       <h1>Setup</h1>
       
-      <h2>Install - Soon</h2>
+      <h2>Install</h2>
 <pre class="code">npm install jellyfish</pre>
 
-      <h2>Basic Usage - Soon</h2>
-      <h3>Start Server</h3>
-<pre class="code">jellyfish start</pre>
+      <h2>Basic Usage</h2>
       <h3>Start Client REPL</h3>
-<pre class="code"> jellyfish client</pre>
+<pre class="code">jellyfish shell</pre>
 
-      <h2>Write a Script - Soon</h2>
+      <h2>Write a Script</h2>
 <pre class="code">
-var assert = require('assert')
-  , jellyfish = require('jellyfish').jellyfish;
+var jellyfish = require('jellyfish'),
+    , assert = require('assert');
 
-var ff = new jellyfish("firefox");
+// init a browser (createFirefox, createChrome, createZombie)
+var browser = jellyfish.createFirefox();
 
-ff.on('command', function(cmd, args){
-  console.log(' \x1b[33m%s\x1b[0m: %s', cmd, args);
-});
+// goto a web site
+browser.go("http://www.jelly.io")
 
-ff.go("http://www.jelly.io")
-  .js("document.title", function(o) {
-    assert.equal(o.result,"Jelly.io: Jellyfish Home")
-  })
-  .user("type", { name:'q', text:'moo'})
-  .user("click", { name:'btnG' })
-  .jsfile("./test.js", function(o) {
-    console.log(o.result)
-  })
-  .jsurl("http://jelly.io/test.js", function(o) { 
-    console.log(o.result);
-  })
-  .stop(function(o) {
+// verify the title
+.js("document.title", function(o) {
+  assert.equal(o.result, "Jelly.io: Jellyfish Home")
+})
+
+// run some local javascript
+.jsfile("./test.js", function(o) {
+  assert.equal(o.result, "alerted: Jellyfish local file loaded succesfully!")
+})
+
+// run some remote javascript, stop the browser, then exit
+.jsurl("http://jelly.io/test.js", function(o) { 
+  assert.equal(o.result, "alerted: Successfully ran some remote javascript in Jellyfish!")
+  browser.stop(function() {
     process.exit();
-  });
+  })
+})
 </pre>
       <h1>Client API</h1>
 
       <h2>Instantiate - /firefox/chrome/node/</h2>
 
 <pre class="code">
-var ff = new jellyfish("firefox");
+var jellyfish = require('jellyfish'),
+    , assert = require('assert');
 </pre>
 
 <b>or</b>
 
 <pre class="code">
-var ff = new jellyfish();
-ff.start("firefox");
+  var browser = jellyfish.createFirefox();
 </pre>
       
       <h2>Run Code</h2>
 
       <h3>Raw Javascript</h3>
 <pre class="code">
-ff.js("$jfQ(document.body).html()", function(o) {
-  console.log(o.result)
-});
+browser.js("document.title", function(o) {
+  assert.equal(o.result, "Jelly.io: Jellyfish Home")
+})
 </pre>
 
       <h3>Local Javascript</h3> 
 <pre class="code">
-ff.jsfile("./test.js", function(o) {
-  console.log(o.result)
-});
+browser.jsfile("./test.js", function(o) {
+  assert.equal(o.result, "alerted: Jellyfish local file loaded succesfully!")
+})
 </pre class="code">
 
       <h3>Remote Javascript</h3>
 <pre class="code">
-ff.jsurl("http://jelly.io/test.js", function(o) { 
-  console.log(o.result)
-});
-</pre>
-
-      <h2>Asserts</h2>
-
-<pre class="code">
-ff.js("document.title", function(o) {
-  assert.equal(o.result,"Jellyfish")
+browser.jsurl("http://jelly.io/test.js", function(o) { 
+  assert.equal(o.result, "alerted: Successfully ran some remote javascript in Jellyfish!")
 });
 </pre>
 
     <h2>User Simulation</h2>
 
 <pre class="code">
-ff.user("type", { name:'q', text:'moo'});
-ff.user("click", { name:'btnG' });
+  browser.user("type", { query:'input[name="q"]', text:'test string'}, function(o) {
+    assert.equal(o.result, true);
+  })
+  browser.user("click", { query:'input[name="btnG"]' }, function(o) {
+    assert.equal(o.result, true);
+  })
 </pre>
-
-<b>Command: alt + t (in browser) gives you a JS runner UI</b>
 
       <h2>Helpers</h2>
       
-      <h3>To - The target</h3>
+      <h3>To - Frame title</h3>
 
-<pre class="code">ff.to("Jelly.io: Jellyfish Home")</pre>
+<pre class="code">browser.to("Jelly.io: Jellyfish Home")</pre>
       
       <h3>Go - To a URL</h3>
 
-<pre class="code">ff.go("http://jelly.io")</pre>
+<pre class="code">browser.go("http://jelly.io")</pre>
 
       <h3>Frames - List</h3>
 
-<pre class="code">ff.frames()</pre>
+<pre class="code">browser.frames()</pre>
 
       <h3>jQuery - Always</h3>
 
