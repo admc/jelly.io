@@ -1,1 +1,1 @@
-alert("Successfully ran some remote javascript in Jellyfish!");
+alert("Jellyfish remote file loaded successfully!");

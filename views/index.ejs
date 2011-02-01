@@ -160,13 +160,13 @@ browser.go("http://www.jelly.io")
 // run some local javascript
 .jsfile("./test.js", function(o) {
   assert.equal(o.result, 
-    "alerted: Jellyfish local file loaded succesfully!")
+    "alerted: Jellyfish local file loaded successfully!")
 })
 
 // run some remote javascript, stop the browser, then exit
 .jsurl("http://jelly.io/test.js", function(o) { 
   assert.equal(o.result, 
-    "alerted: Successfully ran some remote javascript in Jellyfish!")
+    "alerted: Jellyfish remote file loaded successfully!")
   browser.stop(function() {
     process.exit();
   })
