@@ -152,25 +152,25 @@ var browser = jellyfish.createFirefox();
 // goto a web site
 browser.go("http://www.jelly.io")
 
-// verify the title
-.js("document.title", function(o) {
-  assert.equal(o.result, "Jelly.io: Jellyfish Home")
-})
-
-// run some local javascript
-.jsfile("./test.js", function(o) {
-  assert.equal(o.result, 
-    "alerted: Jellyfish local file loaded successfully!")
-})
-
-// run some remote javascript, stop the browser, then exit
-.jsurl("http://jelly.io/test.js", function(o) { 
-  assert.equal(o.result, 
-    "alerted: Jellyfish remote file loaded successfully!")
-  browser.stop(function() {
-    process.exit();
+  // verify the title
+  .js("document.title", function(o) {
+    assert.equal(o.result, "Jelly.io: Jellyfish Home")
   })
-});
+
+  // run some local javascript
+  .jsfile("./test.js", function(o) {
+    assert.equal(o.result, 
+      "alerted: Jellyfish local file loaded successfully!")
+  })
+
+  // run some remote javascript, stop the browser, then exit
+  .jsurl("http://jelly.io/test.js", function(o) { 
+    assert.equal(o.result, 
+      "alerted: Jellyfish remote file loaded successfully!")
+    browser.stop(function() {
+      process.exit();
+    })
+  });
 </pre>
       <h1>Client API</h1>
 
