@@ -213,12 +213,17 @@ browser.jsurl("http://jelly.io/test.js", function(o) {
     <h2>User Simulation</h2>
 
 <pre class="code">
-  browser.user("type", { query:'input[name="q"]', text:'test string'}, function(o) {
-    assert.equal(o.result, true);
-  })
-  browser.user("click", { query:'input[name="btnG"]' }, function(o) {
-    assert.equal(o.result, true);
-  })
+browser.user("type", { 
+    query:'input[name="q"]', 
+    text:'test string'
+  }, function(o) {
+      assert.equal(o.result, true);
+});
+browser.user("click", { 
+    query:'input[name="btnG"]' 
+  }, function(o) {
+      assert.equal(o.result, true);
+});
 </pre>
 
       <h2>Helpers</h2>
