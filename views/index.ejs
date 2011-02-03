@@ -128,14 +128,29 @@
            <li><b>Firefox 3.x, 4.0b</b></li>
            <li><b>Google Chrome</b></li>
            <li><b>Zombie</b></li>
-
          </ul>
+         <h2>Reporting</h2>
+         <ul>
+           <li><b>CouchDB</b></li>
+         </ul>         
        </div>
     <div style="color:#E0E0E0;margin:30px;width:450px;">
-      <h1>Setup</h1>
       
-      <h2>Install</h2>
-<pre class="code">npm install jellyfish</pre>
+      <h1>Setup</h1>
+      <h2>Install Node</h2>
+<pre class="code">
+$ curl -O http://nodejs.org/dist/node-v0.3.2.tar.gz
+$ ./configure
+$ make && make install
+</pre>     
+       <h2>Install NPM</h2>
+<pre class="code">
+$ curl http://npmjs.org/install.sh | sh
+</pre>
+      <h2>Install Jellyfish</h2>
+<pre class="code">
+$ npm install jellyfish
+</pre>
 
       <h2>Basic Usage</h2>
       <h3>Start Client REPL</h3>
@@ -199,14 +214,16 @@ browser.js("document.title", function(o) {
       <h3>Local Javascript</h3> 
 <pre class="code">
 browser.jsfile("./test.js", function(o) {
-  assert.equal(o.result, "alerted: Jellyfish local file loaded succesfully!")
+  assert.equal(o.result, 
+    "alerted: Jellyfish local file loaded succesfully!")
 });
 </pre class="code">
 
       <h3>Remote Javascript</h3>
 <pre class="code">
 browser.jsurl("http://jelly.io/test.js", function(o) { 
-  assert.equal(o.result, "alerted: Successfully ran some remote javascript in Jellyfish!")
+  assert.equal(o.result, 
+    "alerted: Successfully ran some remote javascript in Jellyfish!")
 });
 </pre>
 
