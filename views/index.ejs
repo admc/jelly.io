@@ -139,7 +139,7 @@
       <h1>Setup</h1>
       <h2>Install Node</h2>
 <pre class="code">
-$ curl -O http://nodejs.org/dist/node-v0.3.2.tar.gz
+$ curl -O http://nodejs.org/dist/node-v0.4.2.tar.gz
 $ ./configure
 $ make && make install
 </pre>     
@@ -162,6 +162,7 @@ var jellyfish = require('jellyfish'),
     , assert = require('assert');
 
 // init a browser (createFirefox, createChrome, createZombie)
+//these can also take a URL string param
 var browser = jellyfish.createFirefox();
 
 // goto a web site
