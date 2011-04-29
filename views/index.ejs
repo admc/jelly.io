@@ -127,7 +127,10 @@
          <ul>
            <li><b>Firefox 3.x, 4.0b</b></li>
            <li><b>Google Chrome</b></li>
+           <li><b>Safari (MacOSX)</b></li>
+           <li><b>WebDriver/Selenium2</b></li>
            <li><b>Zombie</b></li>
+           <li><b>Sauce Labs</b></li>
          </ul>
          <h2>Reporting</h2>
          <ul>
@@ -161,7 +164,14 @@ $ npm install jellyfish
 var jellyfish = require('jellyfish'),
     , assert = require('assert');
 
-// init a browser (createFirefox, createChrome, createZombie)
+// init a browser 
+//createFirefox 
+//createChrome
+//createZombie
+//createSafari
+//createSauce
+//createWebdriver
+
 //these can also take a URL string param
 var browser = jellyfish.createFirefox();
 
@@ -184,7 +194,7 @@ browser.go("http://www.jelly.io")
     assert.equal(o.result, 
       "alerted: Jellyfish remote file loaded successfully!")
     browser.stop(function() {
-      process.exit();
+      setTimeout(process.exit(), 2000);
     })
   });
 </pre>
@@ -228,31 +238,13 @@ browser.jsurl("http://jelly.io/test.js", function(o) {
 });
 </pre>
 
-    <h2>User Simulation</h2>
-
-<pre class="code">
-// type a string into a css located input
-browser.user("type", { 
-    query:'input[name="q"]', 
-    text:'test string'
-  }, function(o) {
-      assert.equal(o.result, true);
-});
-
-// click a css located button
-browser.user("click", { 
-    query:'input[name="btnG"]' 
-  }, function(o) {
-      assert.equal(o.result, true);
-});
-</pre>
-
       <h2>Reporting</h2>
 <pre class="code">
 var jellyfish = require('jellyfish')
 
-var browser = jellyfish.createFirefox();
-browser.couch({uri:'my couch url', port:5984, db:'mydbname'})
+var browser = jellyfish.createFirefox(function(){
+  browser.couch({uri:'my couch url', port:5984, db:'mydbname'})
+});
 
 // You can just do browser.couch() and it will default to:
 // {uri:'localhost', port:5984, db:'jellyfish'}
@@ -260,16 +252,16 @@ browser.couch({uri:'my couch url', port:5984, db:'mydbname'})
 // Do stuff and it will automatically get reported to couch!
 </pre>
   
-      <h2>Helpers</h2>
+      <h2>Browser Helpers</h2>
+      
+      <h3>Go - To a URL</h3>
+
+      <pre class="code">browser.go("http://jelly.io")</pre>
       
       <h3>To - Frame title</h3>
 
 <pre class="code">browser.to("Jelly.io: Jellyfish Home")</pre>
       
-      <h3>Go - To a URL</h3>
-
-<pre class="code">browser.go("http://jelly.io")</pre>
-
       <h3>Frames - List</h3>
 
 <pre class="code">browser.frames()</pre>
