@@ -113,9 +113,12 @@
   </style>
 </head>
 <body>
+  <div style="padding-left:500px;"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="getjelly">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+  
   <img src="/img/title.png" style="margin:10px;">
       
     <div class="banner">Jellyfish is a <a href="http://nodejs.org/#build">Node</a> project that aims to make it easy to launch different Javascript environments and run your code.</div>
+    
       
       <div class="env">
          <h2>Platforms</h2>
@@ -135,7 +138,40 @@
          <h2>Reporting</h2>
          <ul>
            <li><b>CouchDB</b></li>
-         </ul>         
+         </ul>
+         <div style="padding-top:150px;">
+           <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+           <script>
+           new TWTR.Widget({
+             version: 2,
+             type: 'profile',
+             rpp: 4,
+             interval: 6000,
+             width: 250,
+             height: 300,
+             theme: {
+               shell: {
+                 background: '#000000',
+                 color: '#ffffff'
+               },
+               tweets: {
+                 background: '#2b2b2b',
+                 color: '#fffef0',
+                 links: '#78c5b4'
+               }
+             },
+             features: {
+               scrollbar: false,
+               loop: false,
+               live: true,
+               hashtags: true,
+               timestamp: true,
+               avatars: false,
+               behavior: 'all'
+             }
+           }).render().setUser('getjelly').start();
+           </script>
+         </div>
        </div>
     <div style="color:#E0E0E0;margin:30px;width:450px;">
       
@@ -275,6 +311,8 @@ var browser = jellyfish.createFirefox(function(){
     <img src="/img/jelly.png" style="position:absolute;top:0px;right:0px;">;
     
    <a href="http://github.com/admc/jellyfish"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://assets2.github.com/img/4c7dc970b89fd04b81c8e221ba88ff99a06c6b61?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_right_white_ffffff.png&path=" alt="Fork me on GitHub"></a>
+   
+<center><a href="http://www.twitter.com/getjelly"><img src="http://twitter-badges.s3.amazonaws.com/follow_me-c.png" alt="Follow getjelly on Twitter"/></a></center>
 </body>
 </html>
 
