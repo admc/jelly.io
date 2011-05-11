@@ -117,7 +117,7 @@
   
   <img src="/img/title.png" style="margin:10px;">
       
-    <div class="banner">Jellyfish is a <a href="http://nodejs.org/#build">Node</a> project that aims to make it easy to launch different Javascript environments and run your code.</div>
+    <div class="banner">Jellyfish is a <a href="http://nodejs.org/#build">Node</a> project that aims to make it easy to launch different JavaScript environments and run your code.</div>
     
       
       <div class="env">
@@ -251,14 +251,14 @@ var browser = jellyfish.createFirefox();
       
       <h2>Run Code</h2>
 
-      <h3>Raw Javascript</h3>
+      <h3>Raw JavaScript</h3>
 <pre class="code">
 browser.js("document.title", function(o) {
   assert.equal(o.result, "Jelly.io: Jellyfish Home")
 });
 </pre>
 
-      <h3>Local Javascript</h3> 
+      <h3>Local JavaScript</h3> 
 <pre class="code">
 browser.jsfile("./test.js", function(o) {
   assert.equal(o.result, 
@@ -266,7 +266,7 @@ browser.jsfile("./test.js", function(o) {
 });
 </pre class="code">
 
-      <h3>Remote Javascript</h3>
+      <h3>Remote JavaScript</h3>
 <pre class="code">
 browser.jsurl("http://jelly.io/test.js", function(o) { 
   assert.equal(o.result, 
