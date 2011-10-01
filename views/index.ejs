@@ -219,6 +219,10 @@ var jellyfish = require('jellyfish')
 //these can also take a URL string param
 var browser = jellyfish.createFirefox();
 
+browser.on('result', function(res) {
+  console.log(browser.name + ' : '+browser.tid + ' - \x1b[33m%s\x1b[0m', JSON.stringify(res));
+});
+
 // goto a web site
 browser.go("http://www.jelly.io")
 
@@ -228,10 +232,12 @@ browser.go("http://www.jelly.io")
   })
 
   // run some local javascript
-  .jsfile("./test.js", function(o) {
+  //create a file called test.js containing
+  //alerted: Jellyfish local file loaded successfully!
+  /*.jsfile("./test.js", function(o) {
     assert.equal(o.result, 
       "alerted: Jellyfish local file loaded successfully!")
-  })
+  })*/
 
   // run some remote javascript, stop the browser, then exit
   .jsurl("http://jelly.io/test.js", function(o) { 
